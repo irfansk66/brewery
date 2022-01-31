@@ -1,0 +1,157 @@
+openapi: 3.0.1
+
+info:
+  version: 0.0.1
+  title: springboot-api-first-design
+  description: springboot-api-first-design
+
+tags:
+  - name: "Brewery"
+
+paths:
+
+  /brewery/findbyid:
+    get:
+      summary: This is summary
+      tags:
+        - "Brewery"
+      description: Get a specific Brewery
+      operationId: getBrewery
+      responses:
+        "200":
+          description: success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Brewery'
+        "404":
+          description: Brewery not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    parameters:
+      - name: brewery-id
+        in: query
+        description: brewery-id
+        required: true
+        schema:
+          type: string
+
+  /brewery/search:
+    get:
+      summary: This is serach brewery endpoint
+      tags:
+        - "Brewery"
+      description: Serach for Brewery with word in name
+      operationId: searchBrewery
+      responses:
+        "200":
+          description: success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Brewery'
+    parameters:
+      - name: query
+        in: query
+        description: query brewery
+        required: true
+        schema:
+          type: string
+  /brewery/filterbystate:
+    get:
+      summary: This is serach breweries by state endpoint
+      tags:
+        - "Brewery"
+      description: Serach for Brewery by state
+      operationId: searchBreweryByState
+      responses:
+        "200":
+          description: success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Brewery'
+    parameters:
+      - name: query
+        in: query
+        description: query brewery
+        required: true
+        schema:
+          type: string
+
+
+components:
+
+  schemas:
+
+    Brewery:
+      description: This is the Brewery model
+      type: object
+      properties:
+        id:
+          description: Brewery Id
+          type: string
+        name:
+          description: The name of book author
+          type: string
+        brewery_type:
+          description: brewery_type
+          type: string
+        street:
+          description: street
+          type: string
+        address_2:
+          description: address_2
+          type: string
+        address_3:
+          description: address_3
+          type: string
+        city:
+          description: city
+          type: string
+        state:
+          description: state
+          type: string
+        county_province:
+          description: county_province
+          type: string
+        postal_code:
+          description: postal_code
+          type: string
+        country:
+          description: country
+          type: string
+        longitude:
+          description: longitude
+          type: string
+        latitude:
+          description: latitude
+          type: string
+        phone:
+          description: phone
+          type: string
+        website_url:
+          description: website_url
+          type: string
+        updated_at:
+          type: string
+          format: date-time
+        created_at:
+          type: string
+          format: date-time
+
+    Error:
+      type: object
+      properties:
+        status:
+          type: integer
+        type:
+          type: string
+        message:
+          type: string
