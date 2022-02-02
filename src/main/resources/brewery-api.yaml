@@ -37,13 +37,14 @@ paths:
         required: true
         schema:
           type: string
+          example: madtree-brewing-cincinnati
 
   /brewery/search:
     get:
       summary: This is serach brewery endpoint
       tags:
         - "Brewery"
-      description: Serach for Brewery with word in name
+      description: Serach for Brewery with word in name. example id - madtree-brewing-cincinnati
       operationId: searchBrewery
       responses:
         "200":
