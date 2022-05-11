@@ -23,7 +23,7 @@ public class BreweryService {
 
     private RestTemplate restTemplate;
     private Environment environment;
-
+    private String baseUrl = environment.getProperty("base.url");
     @Autowired
     public BreweryService(RestTemplate restTemplate, Environment environment){
         this.restTemplate = restTemplate;
@@ -31,7 +31,6 @@ public class BreweryService {
     }
 
     public Brewery getBrewery(String brewreyId) {
-        String baseUrl = environment.getProperty("base.url");
         Brewery response = null;
         try {
             HttpEntity<String> entity = getStringHttpEntity();
@@ -43,8 +42,7 @@ public class BreweryService {
         return response;
     }
 
-    public List<Brewery> searchBrewery(String query) {
-        String baseUrl = environment.getProperty("base.url");
+    public List<Brewery> searchBrewery(String query) {       
         List<Brewery> response = null;
         try {
             HttpEntity<String> entity = getStringHttpEntity();
@@ -61,7 +59,6 @@ public class BreweryService {
 
 
     public List<Brewery> getBreweryByState(String query) {
-        String baseUrl = environment.getProperty("base.url");
         List<Brewery> response = null;
         try {
             HttpEntity<String> entity = getStringHttpEntity();
